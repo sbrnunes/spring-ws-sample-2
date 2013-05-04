@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//Apache Software Foundation//DTD Log4J Configuration 1.0//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="STDOUT_CONSOLE"
+		class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%p][%t][%d{dd/MM/yyyy HH:mm:ss,SSS}][%c{1}] %x - %m%n" />
+		</layout>
+	</appender>
+	<appender name="STDOUT_FILE" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${log4j.home}/gisodyssee-ws-stdout.log" />
+		<param name="MaxFileSize" value="10000KB"/>
+        <!-- Keep one backup file -->
+        <param name="MaxBackupIndex" value="3"/>
+			
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%p][%t][%d{dd/MM/yyyy HH:mm:ss,SSS}][%c{1}] %x - %m%n" />
+		</layout>
+	</appender>
+	<appender name="TRACE_FILE" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${log4j.home}/gisodyssee-ws-trace.log" />
+		<param name="MaxFileSize" value="10000KB"/>
+        <!-- Keep one backup file -->
+        <param name="MaxBackupIndex" value="3"/>
+			
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%p][%t][%d{dd/MM/yyyy HH:mm:ss,SSS}][%c{1}] %x - %m%n" />
+		</layout>
+	</appender>
+	<appender name="STDERR_FILE" class="org.apache.log4j.FileAppender">
+		<param name="File"
+			value="${log4j.home}/gisodyssee-ws-stderr.log" />
+		<param name="Threshold" value="WARN" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%p][%t][%d{dd/MM/yyyy HH:mm:ss,SSS}][%c{1}] %x - %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="org.springframework" additivity="false" >
+		<level value="ERROR" />
+		<appender-ref ref="STDERR_FILE"/>
+	</logger>
+	
+	<logger name="org.springframework.ws.client.MessageTracing" additivity="false" >
+		<level value="TRACE" />
+		<appender-ref ref="TRACE_FILE"/>
+	</logger>
+	
+	<logger name="org.apache.commons.httpclient" additivity="false" >
+		<level value="TRACE" />
+		<appender-ref ref="STDOUT_FILE"/>
+	</logger>
+
+	<root>
+		<level value="DEBUG" />
+		<appender-ref ref="STDOUT_CONSOLE" />
+		<appender-ref ref="STDOUT_FILE"/>
+	</root>
+</log4j:configuration>

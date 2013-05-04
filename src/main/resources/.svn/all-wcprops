@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/GOE/!svn/ver/330/GOE/branches/V8.8/Code/goe-web-services/src/main/resources
+END
+web-services-application-context.xml
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/GOE/!svn/ver/330/GOE/branches/V8.8/Code/goe-web-services/src/main/resources/web-services-application-context.xml
+END
+web-services-default.properties
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/GOE/!svn/ver/330/GOE/branches/V8.8/Code/goe-web-services/src/main/resources/web-services-default.properties
+END
+log4j.xml
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/GOE/!svn/ver/330/GOE/branches/V8.8/Code/goe-web-services/src/main/resources/log4j.xml
+END

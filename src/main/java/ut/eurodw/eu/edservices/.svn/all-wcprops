@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/GOE/!svn/ver/330/GOE/branches/V8.8/Code/goe-web-services/src/main/java/ut/eurodw/eu/edservices
+END
+UploadPerformanceDataResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/GOE/!svn/ver/330/GOE/branches/V8.8/Code/goe-web-services/src/main/java/ut/eurodw/eu/edservices/UploadPerformanceDataResponse.java
+END
+EDError.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/GOE/!svn/ver/330/GOE/branches/V8.8/Code/goe-web-services/src/main/java/ut/eurodw/eu/edservices/EDError.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/GOE/!svn/ver/330/GOE/branches/V8.8/Code/goe-web-services/src/main/java/ut/eurodw/eu/edservices/package-info.java
+END
+EDServiceFault.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/GOE/!svn/ver/330/GOE/branches/V8.8/Code/goe-web-services/src/main/java/ut/eurodw/eu/edservices/EDServiceFault.java
+END
+ArrayOfEDError.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/GOE/!svn/ver/330/GOE/branches/V8.8/Code/goe-web-services/src/main/java/ut/eurodw/eu/edservices/ArrayOfEDError.java
+END
+UploadPerformanceDataRequest.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/GOE/!svn/ver/330/GOE/branches/V8.8/Code/goe-web-services/src/main/java/ut/eurodw/eu/edservices/UploadPerformanceDataRequest.java
+END
+ObjectFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/GOE/!svn/ver/330/GOE/branches/V8.8/Code/goe-web-services/src/main/java/ut/eurodw/eu/edservices/ObjectFactory.java
+END

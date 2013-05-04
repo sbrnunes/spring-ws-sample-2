@@ -1,0 +1,6 @@
+
+default.httpClient.timeout=30000
+default.httpClient.proxy.host=ncproxy
+default.httpClient.proxy.port=8080
+default.httpClient.proxy.auth.username=<proxy user>
+default.httpClient.proxy.auth.password=<proxy pass>

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/GOE/!svn/ver/330/GOE/branches/V8.8/Code/goe-web-services/src/main/filters
+END
+filter-ppd.properties
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/GOE/!svn/ver/330/GOE/branches/V8.8/Code/goe-web-services/src/main/filters/filter-ppd.properties
+END
+filter-prd.properties
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/GOE/!svn/ver/330/GOE/branches/V8.8/Code/goe-web-services/src/main/filters/filter-prd.properties
+END
+filter-rec.properties
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/GOE/!svn/ver/330/GOE/branches/V8.8/Code/goe-web-services/src/main/filters/filter-rec.properties
+END
+filter-local.properties
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/GOE/!svn/ver/330/GOE/branches/V8.8/Code/goe-web-services/src/main/filters/filter-local.properties
+END
+filter-dev.properties
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/GOE/!svn/ver/330/GOE/branches/V8.8/Code/goe-web-services/src/main/filters/filter-dev.properties
+END

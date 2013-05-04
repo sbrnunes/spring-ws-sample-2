@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.eurodw.eu/EDServices/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://www.eurodw.eu/EDServices/1.0" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.eurodw.eu/EDServices/1.0/Imports">
+      <xsd:import schemaLocation="PerformanceDataUploadService.xsd" namespace="http://www.eurodw.eu/EDServices/1.0"/>
+      <xsd:import schemaLocation="PerformanceDataUploadService_1.xsd" namespace="http://schemas.microsoft.com/Message"/>
+      <xsd:import schemaLocation="PerformanceDataUploadService_1_2.xsd" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="UploadPerformanceDataRequest">
+    <wsdl:part name="parameters" element="tns:UploadPerformanceDataRequest"/>
+  </wsdl:message>
+  <wsdl:message name="UploadPerformanceDataRequest_Headers">
+    <wsdl:part name="EDCode" element="tns:EDCode"/>
+    <wsdl:part name="PoolCutOffDate" element="tns:PoolCutOffDate"/>
+    <wsdl:part name="SignatureData" element="tns:SignatureData"/>
+    <wsdl:part name="UploadDate" element="tns:UploadDate"/>
+  </wsdl:message>
+  <wsdl:message name="UploadPerformanceDataResponse">
+    <wsdl:part name="parameters" element="tns:UploadPerformanceDataResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IPerformanceDataUploadService_UploadPerformanceData_EDServiceFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:EDServiceFault"/>
+  </wsdl:message>
+  <wsdl:portType name="IPerformanceDataUploadService">
+    <wsdl:operation name="UploadPerformanceData">
+      <wsdl:input wsaw:Action="http://www.eurodw.eu/EDServices/1.0/IPerformanceDataUploadService/UploadPerformanceData" name="UploadPerformanceDataRequest" message="tns:UploadPerformanceDataRequest"/>
+      <wsdl:output wsaw:Action="http://www.eurodw.eu/EDServices/1.0/IPerformanceDataUploadService/UploadPerformanceDataResponse" name="UploadPerformanceDataResponse" message="tns:UploadPerformanceDataResponse"/>
+      <wsdl:fault wsaw:Action="http://www.eurodw.eu/EDServices/1.0/IPerformanceDataUploadService/UploadPerformanceDataEDServiceFaultFault" name="EDServiceFaultFault" message="tns:IPerformanceDataUploadService_UploadPerformanceData_EDServiceFaultFault_FaultMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

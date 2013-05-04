@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-lazy-init="true"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-2.5.xsd
+						http://www.springframework.org/schema/util
+       					http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+	<!-- Axiom message factory -->
+	<bean id="messageFactory" class="org.springframework.ws.soap.axiom.AxiomSoapMessageFactory">
+		 <property name="soapVersion">
+            <util:constant static-field="org.springframework.ws.soap.SoapVersion.SOAP_12"/>
+        </property>
+	</bean>
+
+	<!-- Web Services default properties -->
+	<bean id="defaultPropertyConfigurer" abstract="true"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:web-services-default.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Web Services default HTTP parameters -->
+	<bean id="defaultHttpParams" abstract="true" 
+		class="org.apache.commons.httpclient.params.HttpClientParams">
+		<property name="soTimeout" value="${default.httpClient.timeout}" />
+	</bean>
+
+	<!-- Web Services default HTTP connection manager -->
+	<bean id="defaultConnectionManager" abstract="true" 
+		class="org.apache.commons.httpclient.MultiThreadedHttpConnectionManager" />
+
+	<!-- Web Services default HTTP client (without proxy) -->
+	<bean id="defaultHttpClient" abstract="true" 
+		class="org.apache.commons.httpclient.HttpClient" />
+	
+	<!-- Web Services default HTTP message sender -->
+	<bean id="defaultMessageSender" abstract="true" 
+		class="org.springframework.ws.transport.http.CommonsHttpMessageSender" />
+	
+	<!-- BP2S corporate proxy host configuration  -->
+	<bean name="proxyHostConfiguration" scope="prototype" 
+		class="com.bnpparibas.goe.service.edservice.proxy.ProxyHostConfiguration">
+		<constructor-arg index="0" value="${default.httpClient.proxy.host}" />
+		<constructor-arg index="1" value="${default.httpClient.proxy.port}" />
+	</bean>
+	
+	<!-- BP2S corporate proxy authentication  -->
+	<bean id="proxyCredentials" scope="prototype" 
+		class="org.apache.commons.httpclient.UsernamePasswordCredentials">
+        <constructor-arg index="0" value="${default.httpClient.proxy.auth.username}"/>
+        <constructor-arg index="1" value="${default.httpClient.proxy.auth.password}"/>
+    </bean>
+    
+    <!-- BP2S corporate proxy authentication  -->
+    <bean id="proxyHttpState" scope="prototype"
+    	class="com.bnpparibas.goe.service.edservice.proxy.ProxyHttpState">
+    	<constructor-arg ref="proxyCredentials" />
+    </bean>
+</beans>

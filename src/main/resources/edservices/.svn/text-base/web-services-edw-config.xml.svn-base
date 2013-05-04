@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-lazy-init="true" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns="http://www.springframework.org/schema/beans"
+    xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-2.5.xsd
+						http://www.springframework.org/schema/util
+       					http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+	<!-- EDW Web Services specific property placeholder configurer -->
+	<bean id="edwPropertyConfigurer" parent="defaultPropertyConfigurer">
+		<property name="locations">
+			<list merge="true">
+				<value>classpath:edservices/web-services-edw.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- EDW Web Services specific HTTP parameters -->
+	<bean id="edwHttpParams" parent="defaultHttpParams" >
+		<property name="soTimeout" value="${edservices.httpClient.timeout}" />
+	</bean>
+	
+	<!-- EDW Web Services specific HTTP connection manager -->
+	<bean id="edwConnectionManager" parent="defaultConnectionManager" scope="prototype" />
+	
+	<!-- EDW Web Services specific HTTP client (with proxy) -->
+	<bean id="edwHttpClient" parent="defaultHttpClient" scope="prototype">
+		<constructor-arg ref="edwHttpParams" />
+		<constructor-arg ref="edwConnectionManager" />
+		<property name="hostConfiguration" ref="proxyHostConfiguration" />
+		<property name="state" ref="proxyHttpState"/>
+	</bean>
+	
+	<!-- EDW Web Services specific HTTP message sender -->
+	<bean id="edwMessageSender" parent="defaultMessageSender" scope="prototype">
+		<constructor-arg ref="edwHttpClient"/>
+	</bean>
+	
+	<!-- EDW JAXB Marshaller -->
+	<bean id="edwMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="contextPath" value="ut.eurodw.eu.edservices" />
+	</bean>
+	
+	<!-- WS-Security UsernameToken interceptor -->
+    <bean id="edwUsernameTokenInterceptor" scope="prototype" 
+    	class="org.springframework.ws.soap.security.wss4j.Wss4jSecurityInterceptor">
+    	<property name="securementActions" value="UsernameToken"/>
+        <property name="securementUsername" value="${edservices.wss.usernameToken.username}"/>
+	    <property name="securementPassword" value="${edservices.wss.usernameToken.password}"/>
+	    <property name="securementPasswordType" value="PasswordText"/>
+	    <!-- <property name="securementUsernameTokenElements" value="Nonce Created"/> -->
+    </bean>
+    
+    <!-- EDW Spring WebServiceTemplate instance -->
+    <bean id="edwServicesTemplate" scope="prototype" 
+    	class="org.springframework.ws.client.core.WebServiceTemplate">
+        <constructor-arg ref="messageFactory"/>
+        <property name="marshaller" ref="edwMarshaller"/>
+        <property name="unmarshaller" ref="edwMarshaller"/>
+        <property name="messageSender" ref="edwMessageSender"/>
+        <property name="interceptors">
+            <list>
+                <ref bean="edwUsernameTokenInterceptor"/>
+            </list>
+        </property>
+    </bean>
+    
+    <!-- PerformanceDataUploadService configuration -->
+    <bean id="uploadPerformanceDataService" scope="prototype"
+    	class="com.bnpparibas.goe.service.edservice.impl.UploadPerformanceDataServiceImpl">
+		<constructor-arg index="0" value="${PerformanceDataUploadService.endpoint}"/>
+		<constructor-arg index="1" value="${PerformanceDataUploadService.addressing.action}"/>
+	</bean>
+
+	<!-- Date formater  -->
+	<bean id="dateFormat" class="java.text.SimpleDateFormat">
+		<constructor-arg value="yyyy-MM-dd" />
+	</bean>
+</beans>

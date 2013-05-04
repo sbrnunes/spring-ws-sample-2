@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="http://www.eurodw.eu/EDServices/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.eurodw.eu/EDServices/1.0">
+  <xs:import schemaLocation="PerformanceDataUploadService_1.xsd" namespace="http://schemas.microsoft.com/Message"/>
+  <xs:element name="UploadPerformanceDataRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Filestream" type="q1:StreamBody" xmlns:q1="http://schemas.microsoft.com/Message"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EDCode" nillable="true" type="xs:string"/>
+  <xs:element name="PoolCutOffDate" type="xs:dateTime"/>
+  <xs:element name="SignatureData" nillable="true" type="xs:string"/>
+  <xs:element name="UploadDate" type="xs:dateTime"/>
+  <xs:element name="UploadPerformanceDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RequestId" nillable="true" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="EDServiceFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessages" nillable="true" type="tns:ArrayOfEDError"/>
+      <xs:element minOccurs="0" name="OperationName" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="ServiceName" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EDServiceFault" nillable="true" type="tns:EDServiceFault"/>
+  <xs:complexType name="ArrayOfEDError">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EDError" nillable="true" type="tns:EDError"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEDError" nillable="true" type="tns:ArrayOfEDError"/>
+  <xs:complexType name="EDError">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" type="xs:int"/>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Tag" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EDError" nillable="true" type="tns:EDError"/>
+</xs:schema>
